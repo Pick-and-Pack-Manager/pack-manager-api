@@ -56,7 +56,6 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {}
   res.locals.coder = req.coder
   res.locals.hideSearch = true
-  res.locals.layout = 'layouts/error'
   // Render the error page
   res.status(err.status || 500)
   res.render('error')
