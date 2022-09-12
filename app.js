@@ -53,9 +53,10 @@ app.use('/', require('./controllers/search'))
 // *** TEST SEARCH CONTROLLER FIRST TEST END ***
 
 // Create route for results
-app.get('/results', (req, res) => {
-  res.render('results')
-})
+// app.get('/results', (req, res) => {
+//   res.render('results')
+// })
+app.use('/results', require('./controllers/results'))
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
