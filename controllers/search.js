@@ -7,9 +7,9 @@ const router = express.Router()
 // Create here a controller that accepts GET requests and renders the "search" page
 
 // *** SEARCH BEFORE CLASS TEST START ***
-// app.get('/', (req, res) => {
-//   router.render('search')
-// })
+router.get('/', (req, res) => {
+  res.render('search')
+})
 // *** SEARCH BEFORE CLASS TEST END ***
 
 // Export
