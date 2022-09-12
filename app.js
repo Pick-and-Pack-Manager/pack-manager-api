@@ -48,9 +48,9 @@ app.get('/', (req, res) => {
   res.render('search')
 })
 // *** SEARCH FIRST DAY END ***
-// *** SEARCH CONTROLLER FIRST TEST START ***
+// *** TEST SEARCH CONTROLLER FIRST TEST START ***
 // app.use('/', require('./controllers/search'))
-// *** SEARCH CONTROLLER FIRST TEST END ***
+// *** TEST SEARCH CONTROLLER FIRST TEST END ***
 
 // Create route for results
 app.get('/results', (req, res) => {
