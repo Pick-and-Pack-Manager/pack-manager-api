@@ -53,10 +53,15 @@ app.use('/', require('./controllers/search'))
 // *** TEST SEARCH CONTROLLER FIRST TEST END ***
 
 // Create route for results
+// *** RESULTS FIRST DAY START ***
 // app.get('/results', (req, res) => {
 //   res.render('results')
 // })
+// *** RESULTS FIRST DAY END ***
+
+// *** TEST RESULTS CONTROLLER FIRST TEST START ***
 app.use('/results', require('./controllers/results'))
+// *** TEST RESULTS CONTROLLER FIRST TEST END ***
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
