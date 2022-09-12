@@ -42,9 +42,16 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
 // Create route for search
+
+// *** SEARCH FIRST DAY START ***
 app.get('/', (req, res) => {
   res.render('search')
 })
+// *** SEARCH FIRST DAY END ***
+// *** SEARCH CONTROLLER FIRST TEST START ***
+// app.use('/', require('./controllers/search'))
+// *** SEARCH CONTROLLER FIRST TEST END ***
+
 // Create route for results
 app.get('/results', (req, res) => {
   res.render('results')
