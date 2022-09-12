@@ -13,3 +13,53 @@ router.get('/', (req, res) => {
 // *** FIRST DAY TEST START ***
 module.exports = router
 // *** FIRST DAY TEST END ***
+
+// *** RESULTS TEST ARRAY START ***
+let resultArray = [
+  {
+    title: 'JS tutorials',
+    description: 'The best JavaScript tutorials in the galaxy!',
+    url: 'https://www.w3schools.com',
+    links: [
+      {
+        title: 'JS for Beginners',
+        url: 'https://www.w3schools.com/js'
+      },
+      {
+        title: 'JS for the Web',
+        url: 'https://www.w3schools.com/js'
+      }
+    ]
+  },
+  {
+    title: 'Tortuga Coders',
+    description: 'F&#k it!, Its Real!',
+    url: 'https://www.Tortuga Coders.com',
+    links: [
+      {
+        title: 'JS for Beginners',
+        url: 'https://www.TC.com/js'
+      },
+      {
+        title: 'JS for the Web',
+        url: 'https://www.TCs.com/CSS'
+      }
+    ]
+  },
+  {
+    title: 'Wikipedia',
+    description: 'Wiki is real',
+    url: 'https://www.wikipedia.com',
+    links: [
+      {
+        title: 'JS for Beginners',
+        url: 'https://www.w3schools.com/js'
+      },
+      {
+        title: 'JS for the Web',
+        url: 'https://www.w3schools.com/js'
+      }
+    ]
+  }
+]
+// *** RESULTS TEST ARRAY END ***
