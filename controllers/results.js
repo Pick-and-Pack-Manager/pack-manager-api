@@ -36,6 +36,10 @@ router.get('/', (req, res) => {
         {
           title: 'JS for the Web',
           url: 'https://www.TCs.com/CSS'
+        },
+        {
+          title: 'Kyles TEST',
+          url: 'https://www.TCs.com/CSS'
         }
       ]
     },
