@@ -27,30 +27,27 @@ router.get('/', (req, res) => {
     {
       title: 'Tortuga Coders',
       description: 'F&#k it!, Its Real!',
-      url: 'https://www.Tortuga Coders.com',
+      url: 'https://tortugacoders.com/',
       links: [
         {
-          title: 'JS for Beginners',
-          url: 'https://www.TC.com/js'
+          title: 'Apply',
+          url: 'https://tortugacoders.com/apply'
         },
         {
-          title: 'JS for the Web',
-          url: 'https://www.TCs.com/CSS'
-        },
-        {
-          title: 'Kyles TEST',
-          url: 'https://www.TCs.com/CSS'
+          title: 'Wed Dev Courses',
+          url: 'https://tortugacoders.com/courses'
         }
       ]
     },
     {
       title: 'Wikipedia',
-      description: 'Wiki is real',
-      url: 'https://www.wikipedia.com',
+      description:
+        'JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.',
+      url: 'https://en.wikipedia.org/wiki/JavaScript',
       links: [
         {
-          title: 'JS for Beginners',
-          url: 'https://www.w3schools.com/js'
+          title: 'Javascript Syntax',
+          url: 'https://en.wikipedia.org/wiki/JavaScript_syntax'
         },
         {
           title: 'JS for the Web Cool!',
@@ -58,6 +55,22 @@ router.get('/', (req, res) => {
         }
       ]
     }
+    // {
+    //   title: 'Code Wars',
+    //   description:
+    //     'Improve your development skills · by training with your peers on code kata that continuously challenge and push your coding practice',
+    //   url: 'https://www.codewars.com/',
+    //   links: [
+    //     {
+    //       title: 'Log In',
+    //       url: 'https://www.codewars.com/users/sign_in'
+    //     },
+    //     {
+    //       title: 'Basic Python',
+    //       url: 'https://www.codewars.com/collections/basic-python'
+    //     }
+    //   ]
+    // }
   ]
   // *** RESULTS TEST ARRAY END ***
   res.render('results', { results })
