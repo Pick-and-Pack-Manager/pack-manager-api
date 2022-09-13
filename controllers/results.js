@@ -55,13 +55,6 @@ router.get('/', (req, res) => {
       ]
     }
   ]
-  // *** Test Results qty start ***
-  const resultsLength = results => {
-    let numResults = results.length
-    return numResults
-  }
-  // *** Test Results qty end ***
-
   // *** RESULTS TEST ARRAY END ***
   res.render('results', { results })
 })
