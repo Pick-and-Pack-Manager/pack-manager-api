@@ -74,7 +74,23 @@ const filterResults = (array, search) => {
       newArray.push(obj)
     }
   })
+  let resultQty = newArray.length
   return newArray
+}
+
+const resultQty = (array, search) => {
+  let newArray = []
+  array.forEach((obj, ind) => {
+    if (obj.title.includes(search)) {
+      newArray.push(obj)
+    }
+  })
+  let resultQty = newArray.length
+  if (resultQty == 0 || resultQty > 1) {
+    return resultQty + ' Results'
+  } else {
+    return resultQty + ' Result'
+  }
 }
 // *** FILTER END ***
 // *** TEST FILTER END ***
@@ -85,7 +101,10 @@ const router = express.Router()
 // Create POST controller
 router.post('/', (req, res) => {
   let searched = req.body.search
-  res.render('results', { resultsData: filterResults(resultsTest, searched) })
+  res.render('results', {
+    resultsData: filterResults(resultsTest, searched),
+    resultAmount: resultQty(resultsTest, searched)
+  })
 })
 
 router.get('/', (req, res) => {
