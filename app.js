@@ -44,6 +44,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Create route for search
 app.use('/', require('./controllers/search'))
 app.use('/results', require('./controllers/results'))
+// *** TEST CREATE SUBMIT START ***
+
+// *** TEST CREATE SUBMIT END ***
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
