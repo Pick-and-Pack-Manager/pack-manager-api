@@ -54,23 +54,23 @@ router.get('/', (req, res) => {
           url: 'https://www.w3schools.com/js'
         }
       ]
+    },
+    {
+      title: 'Code Wars',
+      description:
+        'Improve your development skills · by training with your peers on code kata that continuously challenge and push your coding practice',
+      url: 'https://www.codewars.com/',
+      links: [
+        {
+          title: 'Log In',
+          url: 'https://www.codewars.com/users/sign_in'
+        },
+        {
+          title: 'Basic Python',
+          url: 'https://www.codewars.com/collections/basic-python'
+        }
+      ]
     }
-    // {
-    //   title: 'Code Wars',
-    //   description:
-    //     'Improve your development skills · by training with your peers on code kata that continuously challenge and push your coding practice',
-    //   url: 'https://www.codewars.com/',
-    //   links: [
-    //     {
-    //       title: 'Log In',
-    //       url: 'https://www.codewars.com/users/sign_in'
-    //     },
-    //     {
-    //       title: 'Basic Python',
-    //       url: 'https://www.codewars.com/collections/basic-python'
-    //     }
-    //   ]
-    // }
   ]
   // *** RESULTS TEST ARRAY END ***
   res.render('results', { results })
