@@ -2,6 +2,11 @@
 const express = require('express')
 const router = express.Router()
 // Create POST controller
+router.post('/', (req, res) => {
+  res.render('results')
+  console.log(req.body)
+})
+
 router.get('/', (req, res) => {
   // *** RESULTS TEST ARRAY START ***
   let results = [
