@@ -3,12 +3,12 @@
 <!-- *** NAV PARTIAL END *** -->
 <section class="results-page">
 	<div class="search-path">
-		<span class="search-path">{{results.length}} Results</span>
+		<span class="search-path">{{resultsData.length}} Results</span>
 	</div>
 </section>
 <!-- *** RESULTS LINK ARRAY START *** -->
 <section class="search-results">
-	{{#each results as |result|}}
+	{{#each resultsData as |result|}}
 	<div>
 		<small>{{result.url}}</small>
 		<h1>

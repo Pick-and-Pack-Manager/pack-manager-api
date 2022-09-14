@@ -84,11 +84,12 @@ const express = require('express')
 const router = express.Router()
 // Create POST controller
 router.post('/', (req, res) => {
-  res.render('results')
-  console.log(req.body)
+  let searched = req.body.search
+  res.render('results', { resultsData: filterResults(resultsTest, searched) })
 })
 
 router.get('/', (req, res) => {
+  // res.render('results', { results })
 })
 // Export module
 module.exports = router
