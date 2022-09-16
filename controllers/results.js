@@ -1,12 +1,16 @@
 // Import Packages
 const express = require('express')
 const router = express.Router()
+
+const Results = require('../models/results.js')
 // Create POST controller
-router.post('/', (req, res) => {
-  let searched = req.body.search
+router.post('/', async (req, res) => {
+  console.log(req.body.search)
+  let results = await Results.find({})
+  console.log(results)
   res.render('results', {
-    resultsData: filterResults(resultsTest, searched),
-    resultAmount: resultQty(resultsTest, searched)
+    // resultsData: filterResults(resultsTest, searched),
+    // resultAmount: resultQty(resultsTest, searched)
   })
 })
 
