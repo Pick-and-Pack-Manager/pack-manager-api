@@ -32,13 +32,13 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Database
-// mongoose.connect(
-//   process.env.MONGODB_URL,
-//   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
-//   () => {
-//     console.log('Connected to MongoDB')
-//   }
-// )
+mongoose.connect(
+  process.env.MONGODB_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
+  () => {
+    console.log('Connected to MongoDB')
+  }
+)
 
 // Routes
 // Create route for search
