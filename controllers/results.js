@@ -9,7 +9,7 @@ const Results = require('../models/results.js')
 // Create here a controller that accepts GET requests and renders the "search" page
 router.get('/', async (req, res) => {
   let results = await Results.find({
-    title: { $regex: req.query.search }
+    title: { $regex: req.query.search || '' }
   })
 	console.log(results)
   res.json(results)
