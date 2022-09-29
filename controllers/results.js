@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   let results = await Results.find({
     title: { $regex: req.query.search }
   })
-	console.log(req.query.search)
+	console.log(results)
   res.json(results)
 })
 
