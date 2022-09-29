@@ -3,20 +3,15 @@ const express = require('express')
 const router = express.Router()
 
 const Results = require('../models/results.js')
-// Create POST controller
-router.post('/', async (req, res) => {
-  console.log(req.body.search)
-  let results = await Results.find({
-    title: { $regex: req.body.search }
-  })
-  res.render('results', {
-    results,
-    qtyText: qtyText()
-  })
+// const app = express()
+
+// Views
+// Create here a controller that accepts GET requests and renders the "search" page
+router.get('/', async (req, res) => {
+  let results = await Results.find({})
+	console.log(results)
+  res.send(results)
 })
 
-router.get('/', (req, res) => {
-  // res.render('results', { results })
-})
 // Export module
 module.exports = router
