@@ -9,23 +9,6 @@ router.post('/', async (req, res) => {
   let results = await Results.find({
     title: { $regex: req.body.search }
   })
-  // *** Results Qty ***
-  // const qtyText = async () => {
-  //   let qtyRes = await Results.countDocuments({
-  //     title: { $regex: req.body.search }
-  //   })
-  //   return qtyRes == 1 ? qtyRes + ' Result' : qtyRes + ' Results'
-  // }
-  // *** Results Qty ***
-
-  // *** Search Qty Text ***
-  const qtyText = () => {
-    return results.length == 1
-      ? results.length + ' Result'
-      : results.length + ' Results'
-  }
-  // *** Search Qty Text ***
-  console.log(results)
   res.render('results', {
     results,
     qtyText: qtyText()
