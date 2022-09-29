@@ -15,11 +15,11 @@ require('dotenv').config()
 const app = express()
 
 // View Engine (Handlebars)
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'hbs')
-app.set('view options', { layout: 'layouts/main' })
-hbs.registerPartials(__dirname + '/views/partials', err => {})
-hbsUtils.registerWatchedPartials(__dirname + '/views/partials')
+// app.set('views', path.join(__dirname, 'views'))
+// app.set('view engine', 'hbs')
+// app.set('view options', { layout: 'layouts/main' })
+// hbs.registerPartials(__dirname + '/views/partials', err => {})
+// hbsUtils.registerWatchedPartials(__dirname + '/views/partials')
 
 // Middleware
 app.use(logger('tiny'))
@@ -42,27 +42,7 @@ mongoose.connect(
 
 // Routes
 // Create route for search
-app.use('/', require('./controllers/search'))
+// app.use('/', require('./controllers/search'))
 app.use('/results', require('./controllers/results'))
-// *** TEST CREATE SUBMIT START ***
-
-// *** TEST CREATE SUBMIT END ***
-
-// Catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404))
-})
-
-// Error Handler
-app.use((err, req, res, next) => {
-  // Only provides full error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-  res.locals.coder = req.coder
-  res.locals.hideSearch = true
-  // Render the error page
-  res.status(err.status || 500)
-  res.render('error')
-})
 
 module.exports = app
