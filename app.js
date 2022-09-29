@@ -10,10 +10,11 @@ const hbs = require('hbs')
 const hbsUtils = require('hbs-utils')(hbs)
 const methodOverride = require('method-override')
 require('dotenv').config()
+var cors = require('cors')
 
 // Build the App
 const app = express()
-
+app.use(cors())
 // View Engine (Handlebars)
 // app.set('views', path.join(__dirname, 'views'))
 // app.set('view engine', 'hbs')

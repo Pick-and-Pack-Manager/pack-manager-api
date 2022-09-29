@@ -2,7 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
+
 const Results = require('../models/results.js')
+
 // const app = express()
 
 // Views
@@ -11,7 +13,7 @@ router.get('/', async (req, res) => {
   let results = await Results.find({
     title: { $regex: req.query.search || '' }
   })
-	console.log(results)
+	console.log(req.query.search)
   res.json(results)
 })
 
