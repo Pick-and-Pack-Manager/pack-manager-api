@@ -8,6 +8,7 @@ const Users = require('../models/users.js')
 // const app = express()
 
 // Views
+// *** Users are a part of this app. Full control allowed ***
 // Need POST and GET. Can build PATCH and Delete later
 // *** start POST Users start ***
 router.post('/', async (req, res) => {
