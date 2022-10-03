@@ -17,5 +17,29 @@ router.get('/', async (req, res) => {
 })
 // *** end GET Manifests end ***
 
+// *** start POST Manifests start ***
+router.post('/', async (req, res) => {
+  // let manifests = await Manifests.find({})
+	console.log('POST Manifests')
+  res.json(manifests)
+})
+// *** end POST Manifests end ***
+
+// *** start PATCH Manifests start ***
+router.patch('/', async (req, res) => {
+  // let manifests = await Manifests.find({})
+	console.log('PATCH Manifests')
+  res.json(manifests)
+})
+// *** end PATCH Manifests end ***
+
+// *** start DELETE Manifests start ***
+router.delete('/', async (req, res) => {
+  // let manifests = await Manifests.find({})
+	console.log('DELETE Manifests')
+  res.json(manifests)
+})
+// *** end DELETE Manifests end ***
+
 // Export module
 module.exports = router
