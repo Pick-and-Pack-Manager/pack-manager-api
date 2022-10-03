@@ -8,7 +8,7 @@ const Inventory = require('../models/inventory.js')
 // const app = express()
 
 // Views
-// Only GET allowed.
+// *** Inventory is pulled from external source (SAP B1) and cannot be updated only read ***
 // *** start GET Inventory start ***
 router.get('/', async (req, res) => {
   let inventory = await Inventory.find({})
