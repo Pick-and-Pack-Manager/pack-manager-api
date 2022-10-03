@@ -64,7 +64,7 @@ let packagesModel = mongoose.model('packages', {
 		invWhse: {
 			// Warehouse Stock is taken from when Picked.
 			type: String,
-			required: True
+			required: true
 		},
 		delWhse: {
 			type: String,
