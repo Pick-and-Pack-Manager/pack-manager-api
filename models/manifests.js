@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-let manifestModel = mongoose.model('manifests', {
+let manifestsModel = mongoose.model('manifests', {
 // This is where Items are added to a Shipment. Common types = Container, Trailer, Pallet.
 	manifestType: {
 		// this is the type of Package. Common types = Container, Trailer, Pallet.
