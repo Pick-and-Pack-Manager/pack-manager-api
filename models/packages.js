@@ -76,6 +76,7 @@ let packagesModel = mongoose.model('packages', {
 		},
 		issuedQty: {
 			// amount Picked into this Package. Sales Order could have a different amount
+			type: Number,
 			required: true
 		},
 		issuedBalance: {
