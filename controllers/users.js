@@ -9,7 +9,7 @@ const Users = require('../models/users.js')
 
 // Views
 // Need POST and GET. Can build PATCH and Delete later
-// *** start POST orders start ***
+// *** start POST Users start ***
 router.post('/', async (req, res) => {
   let users = await Users.find({
     // title: { $regex: req.query.search || '' }
@@ -17,9 +17,9 @@ router.post('/', async (req, res) => {
 	console.log('POST Users')
   res.json(users)
 })
-// *** end POST orders end ***
+// *** end POST Users end ***
 
-// *** start GET orders start ***
+// *** start GET Users start ***
 router.post('/', async (req, res) => {
   let users = await Users.find({
     // title: { $regex: req.query.search || '' }
@@ -27,9 +27,9 @@ router.post('/', async (req, res) => {
 	console.log('GET Users')
   res.json(users)
 })
-// *** end GET orders end ***
+// *** end GET Users end ***
 
-// *** start PATCH orders start ***
+// *** start PATCH Users start ***
 router.patch('/', async (req, res) => {
   let users = await Users.find({
     // title: { $regex: req.query.search || '' }
@@ -37,7 +37,7 @@ router.patch('/', async (req, res) => {
 	console.log('PATCH Users')
   res.json(users)
 })
-// *** end PATCH orders end ***
+// *** end PATCH Users end ***
 
 // Export module
 module.exports = router
