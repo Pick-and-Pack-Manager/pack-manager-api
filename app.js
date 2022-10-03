@@ -42,8 +42,11 @@ mongoose.connect(
 )
 
 // Routes
-// Create route for search
 // app.use('/', require('./controllers/search'))
-app.use('/results', require('./controllers/results'))
+app.use('/orders', require('./controllers/orders'))
+app.use('/users', require('./controllers/users'))
+app.use('/inventory', require('./controllers/inventory'))
+app.use('/packages', require('./controllers/packages'))
+app.use('/manifests', require('./controllers/manifests'))
 
 module.exports = app
