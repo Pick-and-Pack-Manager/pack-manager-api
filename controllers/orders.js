@@ -8,7 +8,7 @@ const Orders = require('../models/orders.js')
 // const app = express()
 
 // Views
-// Only GET and PATCH allowed. Cannot delete or add
+// *** Orders are pulled from external source (SAP B1 in this case) so limited updating allowed  Only Issued, IssuedQty, IssuedDate, IssuedBalance, FreeText, PackageID, ManifaestID***
 // *** start GET orders start ***
 router.get('/', async (req, res) => {
   let orders = await Orders.find({
