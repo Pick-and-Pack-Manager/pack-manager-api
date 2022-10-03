@@ -42,7 +42,6 @@ mongoose.connect(
 )
 
 // Routes
-// app.use('/', require('./controllers/search'))
 app.use('/orders', require('./controllers/orders'))
 app.use('/users', require('./controllers/users'))
 app.use('/inventory', require('./controllers/inventory'))
