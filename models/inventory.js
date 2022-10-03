@@ -11,7 +11,11 @@ let inventoryModel = mongoose.model('inventory', {
   },
 	itemProperties: {
 		itemGroup: {
+			type: String,
 			required: true
+		},
+		itemCode: {
+			type: Number,
 		}
 	},
 	active: {
