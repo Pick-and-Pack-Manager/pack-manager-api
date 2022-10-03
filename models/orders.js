@@ -77,7 +77,7 @@ let ordersModel = mongoose.model('orders', {
 		},
 		manifestId: {
 			type: ObjectId,
-			ref: 'manifest'
+			ref: 'manifests'
 		}
 	}],
 	customer: {
