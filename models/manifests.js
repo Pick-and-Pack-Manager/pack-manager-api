@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+// *** Manifests are a part of this app. Full control allowed ***
 let manifestsModel = mongoose.model('manifests', {
 // This is where Items are added to a Shipment. Common types = Container, Trailer, Pallet.
 	manifestType: {

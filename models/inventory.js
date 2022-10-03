@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+// *** Inventory is pulled from external source (SAP B1) and cannot be updated only read ***
 let inventoryModel = mongoose.model('inventory', {
   itemCode: {
     type: String,

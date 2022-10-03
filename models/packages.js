@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+// *** Packages are a part of this app. Full Control Allowed ***
 let packagesModel = mongoose.model('packages', {
 // Packages are the smallest Boxes that Items can be packages into. example - bags, boxes
 	packType: {

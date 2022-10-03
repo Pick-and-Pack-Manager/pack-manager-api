@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+// *** Users are a part of this app. Full control allowed ***
 let usersModel = mongoose.model('users', {
   email: {
     type: String,

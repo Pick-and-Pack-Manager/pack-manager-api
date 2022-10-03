@@ -1,6 +1,7 @@
 cconst mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+// *** Orders are pulled from external source (SAP B1 in this case) so limited updating allowed  Only Issued, IssuedQty, IssuedDate, IssuedBalance, FreeText, PackageID, ManifaestID***
 let ordersModel = mongoose.model('orders', {
 	docNum: {
 		type: String,
