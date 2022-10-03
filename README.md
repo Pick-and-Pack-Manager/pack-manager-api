@@ -1,6 +1,6 @@
-# Google Search
+# PickPack Manager
 
-Full-stack project by Tortuga Coders
+Full-stack project by Tortuga Coders. Kyle and Manuel
 
 ## Installation
 
