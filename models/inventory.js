@@ -19,10 +19,10 @@ let inventoryModel = mongoose.model('inventory', {
 			type: Number,
 		}
 	},
-	active: {
+	inactive: {
 		type: String,
 		required: true
-		// Y = Active, N = Inactive
+		// Y = inactive, N = active
 	},
 	inventoryItem: {
 		type: String,
