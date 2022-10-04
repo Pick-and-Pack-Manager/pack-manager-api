@@ -47,5 +47,7 @@ app.use('/users', require('./controllers/users'))
 app.use('/inventory', require('./controllers/inventory'))
 app.use('/packages', require('./controllers/packages'))
 app.use('/manifests', require('./controllers/manifests'))
+// for adding Data
+// app.use('/addinventory', require('./controllers/addinventory'))
 
 module.exports = app
