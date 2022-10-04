@@ -15,8 +15,9 @@ let inventoryModel = mongoose.model('inventory', {
 			type: String,
 			required: true
 		},
-		itemCode: {
+		groupCode: {
 			type: Number,
+			required: true
 		}
 	},
 	inactive: {
