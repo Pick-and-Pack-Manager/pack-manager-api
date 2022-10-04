@@ -33,6 +33,6 @@ let inventoryModel = mongoose.model('inventory', {
 		whseCode: String,
 		onHand: Number
 	}],
-})
+}, "inventory")
 
 module.exports = inventoryModel

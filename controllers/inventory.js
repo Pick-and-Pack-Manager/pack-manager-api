@@ -13,6 +13,7 @@ const Inventory = require('../models/inventory.js')
 router.get('/', async (req, res) => {
   let inventory = await Inventory.find({})
 	console.log('GET Inventory')
+	console.log(inventory)
   res.json(inventory)
 })
 // *** end GET Inventory end ***
