@@ -49,5 +49,6 @@ app.use('/packages', require('./controllers/packages'))
 app.use('/manifests', require('./controllers/manifests'))
 // for adding Data
 // app.use('/addinventory', require('./controllers/addinventory'))
+// app.use('/addorders', require('./controllers/addorders'))
 
 module.exports = app
