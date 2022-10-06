@@ -41,6 +41,9 @@ mongoose.connect(
   }
 )
 
+// Security
+require('./express-sessions')(app)
+
 // Routes
 app.use('/', require('./controllers/auth'))
 app.use('/orders', require('./controllers/orders'))
