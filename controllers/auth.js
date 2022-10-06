@@ -35,10 +35,11 @@ router.post('/login', async (req, res, next) => {
       }
       // ** end handle true error ***
     } else {
-      let loggedUser = await Users.findOne({
-        email: req.body.user.email,
-        password: req.body.user.password
+			let loggedUser = await Users.findOne({
+        email: user.email,
+        password: user.password
       })
+			console.log(loggedUser)
       // *** start handle signin ***
       req.login(loggedUser, err => {
         if (err) {
