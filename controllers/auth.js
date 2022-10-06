@@ -38,20 +38,28 @@ router.post('/login', async (req, res, next) => {
         email: user.email,
         password: user.password
       })
-			// console.log(loggedUser)
+			// console.log(loggedUser.id)
       // *** start handle signin ***
-      req.login(loggedUser, err => {
+      req.login(loggedUser, async err => {
         if (err) {
           throw err
         }
-				res.send(loggedUser)
+				let userDb = await Users.findById(loggedUser.id)
+				console.log(userDb)
+				res.send(userDb)
       })
-			console.log('LOGGED IN USER')
-			console.log(loggedUser)
+
+		}
+		// *** start find database user ***
+// let userDatabase = await Users.findOne({
+// 	email: user.email,
+// 	password: user.password
+// })
+// console.log(userDatabase)
+// *** end find database user ***
 
 
       // *** End handle Signin ***
-    }
     // *** end define user ***
     // ** end code **
   } catch (err) {
