@@ -29,7 +29,7 @@ router.post('/login', async (req, res, next) => {
     ) {
       // ** start handle true error ***
       console.log('BAD!!! NO Matching email or password')
-			res.send({error: 'Either email or password incorrect'})
+			res.send({error: 'Either email or password incorrect. Speak to your Supervisor or Manager'})
       {
         throw new Error('Either email or password incorrect')
       }
