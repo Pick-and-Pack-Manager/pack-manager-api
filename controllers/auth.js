@@ -29,7 +29,11 @@ router.post('/login', async (req, res, next) => {
     ) {
       // ** start handle true error ***
       console.log('BAD!!! NO Matching email or password')
-			res.send({error: 'Either email or password incorrect. Speak to your Supervisor or Manager'})
+			res.send(
+				{
+					error: 'Either email or password incorrect. Speak to your Supervisor or Manager',
+					loggedIn: false
+				})
       {
         throw new Error('Either email or password incorrect')
       }
@@ -40,7 +44,11 @@ router.post('/login', async (req, res, next) => {
         password: user.password
       })
 			if (loggedUser.permission =='A' || loggedUser.permission == null) {
-				res.send({error: 'Email and Password correct. But you do not have the correct access. Speak to your Supervisor or Manager'})
+				res.send(
+					{
+						error: 'Email and Password correct. But you do not have the correct access. Speak to your Supervisor or Manager',
+						loggedIn: false
+				})
 			} else
 
 				// *** start handle signin ***
@@ -50,27 +58,20 @@ router.post('/login', async (req, res, next) => {
 					}
 					let userDb = await Users.findById(loggedUser.id)
 					console.log(userDb)
-					res.send({user: {
-						firstName: userDb.firstName,
-						lastName: userDb.lastName,
-						email: userDb.email,
-						permission: userDb.permission
-					}})
+					res.send(
+						{user: {
+							firstName: userDb.firstName,
+							lastName: userDb.lastName,
+							email: userDb.email,
+							permission: userDb.permission
+						},
+						loggedIn: true
+				})
 				})
 				// *** end handle signin ***
 
 			console.log(loggedUser.id)
 		}
-		// *** start find database user ***
-// let userDatabase = await Users.findOne({
-// 	email: user.email,
-// 	password: user.password
-// })
-// console.log(userDatabase)
-// *** end find database user ***
-
-
-      // *** End handle Signin ***
     // *** end define user ***
     // ** end code **
   } catch (err) {
