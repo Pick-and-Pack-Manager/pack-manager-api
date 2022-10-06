@@ -18,7 +18,7 @@ router.post('/login', async (req, res, next) => {
   try {
     // ** start code **
     // *** start define user ***
-		console.log(req.body)
+		// console.log(req.body)
     let user = {
       email: req.body.user.email,
 			password: req.body.user.password
@@ -29,7 +29,6 @@ router.post('/login', async (req, res, next) => {
     ) {
       // ** start handle true error ***
       console.log('BAD!!! NO Matching email or password')
-			console.log(user)
       {
         throw new Error('Either email or password incorrect')
       }
@@ -39,24 +38,20 @@ router.post('/login', async (req, res, next) => {
         email: user.email,
         password: user.password
       })
-			console.log(loggedUser)
+			// console.log(loggedUser)
       // *** start handle signin ***
       req.login(loggedUser, err => {
         if (err) {
           throw err
         }
+				res.send(loggedUser)
       })
-      console.log('LOGGED IN USER:  ' + req.body)
-      res.redirect('/orders')
+			console.log('LOGGED IN USER')
+			console.log(loggedUser)
+
+
       // *** End handle Signin ***
     }
-    // *** start find database user ***
-    let userDatabase = await Users.findOne({
-      email: req.body.email,
-      password: req.body.password
-    })
-    console.log(userDatabase)
-    // *** end find database user ***
     // *** end define user ***
     // ** end code **
   } catch (err) {
@@ -111,9 +106,10 @@ router.post('/signup', async (req, res, next) => {
         if (err) {
           throw err
         }
+				res.send(loggedUser)
       })
       console.log('LOGGED IN USER:  ' + req.user)
-      res.redirect('/houses')
+
       // *** End handle Signup
       // *** end NEW USER ***
     }
