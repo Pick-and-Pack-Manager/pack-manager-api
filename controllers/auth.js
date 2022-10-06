@@ -39,22 +39,27 @@ router.post('/login', async (req, res, next) => {
         email: user.email,
         password: user.password
       })
-			// console.log(loggedUser.id)
-      // *** start handle signin ***
-      req.login(loggedUser, async err => {
-        if (err) {
-          throw err
-        }
-				let userDb = await Users.findById(loggedUser.id)
-				console.log(userDb)
-				res.send({user: {
-					firstName: userDb.firstName,
-					lastName: userDb.lastName,
-					email: userDb.email,
-					permission: userDb.permission
-				}})
-      })
+			if (loggedUser.permission =='A' || loggedUser.permission == null) {
+				res.send({error: 'Email and Password correct. But you do not have the correct access. Speak to your Supervisor or Manager'})
+			} else
 
+				// *** start handle signin ***
+				req.login(loggedUser, async err => {
+					if (err) {
+						throw err
+					}
+					let userDb = await Users.findById(loggedUser.id)
+					console.log(userDb)
+					res.send({user: {
+						firstName: userDb.firstName,
+						lastName: userDb.lastName,
+						email: userDb.email,
+						permission: userDb.permission
+					}})
+				})
+				// *** end handle signin ***
+
+			console.log(loggedUser.id)
 		}
 		// *** start find database user ***
 // let userDatabase = await Users.findOne({
