@@ -29,6 +29,7 @@ router.post('/login', async (req, res, next) => {
     ) {
       // ** start handle true error ***
       console.log('BAD!!! NO Matching email or password')
+			res.send({error: 'Either email or password incorrect'})
       {
         throw new Error('Either email or password incorrect')
       }
@@ -46,7 +47,12 @@ router.post('/login', async (req, res, next) => {
         }
 				let userDb = await Users.findById(loggedUser.id)
 				console.log(userDb)
-				res.send(userDb)
+				res.send({user: {
+					firstName: userDb.firstName,
+					lastName: userDb.lastName,
+					email: userDb.email,
+					permission: userDb.permission
+				}})
       })
 
 		}
