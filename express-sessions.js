@@ -40,7 +40,8 @@ module.exports = app => {
       unset: 'destroy',
       store: sessionStore,
       cookie: {
-        maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week in milliseconds
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week in milliseconds
+				// secure: true //when using this the cookie does not get created
       }
     })
   )

@@ -15,8 +15,9 @@ var cors = require('cors')
 // Build the App
 const app = express()
 app.use(cors({
-	origin: 'http://localhost:3000',
-	credentials: true
+	origin: ['http://localhost:3000', "127.0.0.1:4420"],
+	credentials: true,
+	// methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
 }))
 // View Engine (Handlebars)
 // app.set('views', path.join(__dirname, 'views'))

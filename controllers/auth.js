@@ -11,14 +11,15 @@ const Users = require('../models/users.js')
 // *** Login Page Start ***
 router.get('/login', (req, res) => {
 	console.log(req.body)
-  res.render('login')
+	console.log(res.data)
+  // res.render('login')
 })
 
 router.post('/login', async (req, res, next) => {
   try {
     // ** start code **
     // *** start define user ***
-		// console.log(req.body)
+		console.log(req.body)
     let user = {
       email: req.body.user.email,
 			password: req.body.user.password
@@ -56,7 +57,7 @@ router.post('/login', async (req, res, next) => {
 					if (err) {
 						throw err
 					}
-					let userDb = await Users.findById(loggedUser.id)
+					let userDb = await Users.findById(loggedUser._id)
 					console.log(userDb)
 					res.send(
 						{user: {
@@ -70,7 +71,7 @@ router.post('/login', async (req, res, next) => {
 				})
 				// *** end handle signin ***
 
-			console.log(loggedUser.id)
+			console.log(loggedUser._id)
 		}
     // *** end define user ***
     // ** end code **
@@ -139,17 +140,29 @@ router.post('/signup', async (req, res, next) => {
 })
 // *** Signup Page End ***
 // *** Logout Page Start ***
-router.get('/logout', (req, res) => {
-  req.logout()
-  req.session.destroy(err => {
-    if (err) {
-      next(err)
-    }
-    res.clearCookie('connect.sid')
-    // continue coding here
-    res.redirect('login')
-    console.log('USER LOGGED OUT')
-  })
+router.get('/logout', (req, res, next) => {
+	try {
+		req.logout(err => {
+			if (err) {
+				next(err)
+			} else {
+				console.log('cookie cleared')
+				console.log('Logged Out')
+				req.session.destroy(err => {
+					if (err) {
+						next(err)
+					}
+					res.clearCookie('connect.sid')
+
+					// continue coding here
+					res.send('yourlogged out')
+				})
+			}
+		})
+
+	} catch (err) {
+		next (err)
+	}
 })
 // *** Logout Page End ***
 // **** END NESTED ROUTES END ****
