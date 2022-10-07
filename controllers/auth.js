@@ -19,17 +19,17 @@ router.post('/login', async (req, res, next) => {
   try {
     // ** start code **
     // *** start define user ***
-		console.log(req.body)
+		// console.log(req.body)
     let user = {
       email: req.body.user.email,
 			password: req.body.user.password
     }
-		    console.log(user)
+		    // console.log(user)
     if (
       (await Users.findOne(user)) == null
     ) {
       // ** start handle true error ***
-      console.log('BAD!!! NO Matching email or password')
+      // console.log('BAD!!! NO Matching email or password')
 			res.send(
 				{
 					error: 'Either email or password incorrect. Speak to your Supervisor or Manager',
@@ -58,7 +58,7 @@ router.post('/login', async (req, res, next) => {
 						throw err
 					}
 					let userDb = await Users.findById(loggedUser._id)
-					console.log(userDb)
+					// console.log(userDb)
 					res.send(
 						{user: {
 							firstName: userDb.firstName,
@@ -71,7 +71,7 @@ router.post('/login', async (req, res, next) => {
 				})
 				// *** end handle signin ***
 
-			console.log(loggedUser._id)
+			// console.log(loggedUser._id)
 		}
     // *** end define user ***
     // ** end code **
@@ -129,7 +129,7 @@ router.post('/signup', async (req, res, next) => {
         }
 				res.send(loggedUser)
       })
-      console.log('LOGGED IN USER:  ' + req.user)
+      // console.log('LOGGED IN USER:  ' + req.user)
 
       // *** End handle Signup
       // *** end NEW USER ***
@@ -146,8 +146,6 @@ router.get('/logout', (req, res, next) => {
 			if (err) {
 				next(err)
 			} else {
-				console.log('cookie cleared')
-				console.log('Logged Out')
 				req.session.destroy(err => {
 					if (err) {
 						next(err)
