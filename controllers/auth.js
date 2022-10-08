@@ -61,6 +61,7 @@ router.post('/login', async (req, res, next) => {
 					// console.log(userDb)
 					res.send(
 						{user: {
+							fullName: userDb.firstName + " " + userDb.lastName,
 							firstName: userDb.firstName,
 							lastName: userDb.lastName,
 							email: userDb.email,
