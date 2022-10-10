@@ -11,6 +11,10 @@ let usersModel = mongoose.model('users', {
     type: String,
     required: true
   },
+	userName: {
+		type: String,
+		required: true
+	},
 	firstName: {
 		type: String,
 		required: true
