@@ -58,14 +58,16 @@ router.post('/login', async (req, res, next) => {
 						throw err
 					}
 					let userDb = await Users.findById(loggedUser._id)
-					// console.log(userDb)
+					console.log(userDb)
 					res.send(
 						{user: {
+							id: userDb._id,
 							fullName: userDb.firstName + " " + userDb.lastName,
 							firstName: userDb.firstName,
 							lastName: userDb.lastName,
 							email: userDb.email,
-							permission: userDb.permission
+							permission: userDb.permission,
+							userName: userDb.userName
 						},
 						loggedIn: true
 				})
