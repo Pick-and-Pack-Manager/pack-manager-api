@@ -22,11 +22,8 @@ router.post('/', async (req, res) => {
 
 // *** start GET Users start ***
 router.get('/', async (req, res) => {
-  let users = await Users.find({
-    // title: { $regex: req.query.search || '' }
-  })
-	console.log('GET Users')
-  res.json(users)
+  let users = await Users.find(req.body)
+  res.send(users)
 })
 // *** end GET Users end ***
 

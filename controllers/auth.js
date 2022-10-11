@@ -59,7 +59,7 @@ router.post('/login', async (req, res, next) => {
 					}
 					let userDb = await Users.findById(loggedUser._id)
 					console.log(userDb)
-					res.send(
+					res.json(
 						{user: {
 							id: userDb._id,
 							fullName: userDb.firstName + " " + userDb.lastName,
