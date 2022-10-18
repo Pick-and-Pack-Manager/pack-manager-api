@@ -67,7 +67,9 @@ router.post('/login', async (req, res, next) => {
 							lastName: userDb.lastName,
 							email: userDb.email,
 							permission: userDb.permission,
-							userName: userDb.userName
+							userName: userDb.userName,
+							createdBy: userDb.createdBy,
+							password: userDb.password
 						},
 						loggedIn: true
 				})

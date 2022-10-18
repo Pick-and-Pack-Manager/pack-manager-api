@@ -36,6 +36,10 @@ let usersModel = mongoose.model('users', {
 		default: 'A'
 		// A - No Access, B - Basic Access, C - Supervisor. If A or Null no Access
 	},
+	userSupervisor: {
+		type: ObjectId,
+		ref: 'users'
+	}
 
 
 })

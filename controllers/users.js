@@ -29,11 +29,17 @@ router.get('/', async (req, res) => {
 
 // *** start PATCH Users start ***
 router.patch('/', async (req, res) => {
-  let users = await Users.find({
-    // title: { $regex: req.query.search || '' }
-  })
-	console.log('PATCH Users')
-  res.json(users)
+	let userId = req.body.user.id
+	let update = await Users.findByIdAndUpdate({_id: userId}, {
+		firstName: req.body.user.firstName,
+		lastName: req.body.user.firstName,
+		email: req.body.user.email,
+		password: req.body.user.password,
+		permission: req.body.user.accessLevel,
+		userSupervisor: req.body.user.userSupervisor,
+	})
+  res.json(update)
+	console.log(update)
 })
 // *** end PATCH Users end ***
 
