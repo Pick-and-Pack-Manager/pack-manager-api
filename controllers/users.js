@@ -12,9 +12,7 @@ const Users = require('../models/users.js')
 // Need POST and GET. Can build PATCH and Delete later
 // *** start POST Users start ***
 router.post('/', async (req, res) => {
-  let users = await Users.find({
-    // title: { $regex: req.query.search || '' }
-  })
+  let users = await Users.find({})
 	console.log('POST Users')
   res.json(users)
 })
@@ -22,24 +20,55 @@ router.post('/', async (req, res) => {
 
 // *** start GET Users start ***
 router.get('/', async (req, res) => {
-  let users = await Users.find(req.body)
+	// console.log(req)
+  let users = await Users.find()
   res.send(users)
 })
 // *** end GET Users end ***
 
+// *** start GET Users start ***
+router.get('/supervisors', async (req, res) => {
+	// console.log(req.body)
+  let users = await Users.find({permission: {
+  						$gte: 'D'
+						}})
+  res.send(users)
+})
+// *** end GET Users end ***
+
+// *** start GET Staff start ***
+router.get('/staff', async (req, res) => {
+  let staffUsers = await Users.find({})
+	console.log(staffUsers)
+  res.send(staffUsers)
+})
+// *** end GET Staff end ***
+
 // *** start PATCH Users start ***
 router.patch('/', async (req, res) => {
-	let userId = req.body.user.id
+	console.log(req.body.user._id)
+	let userId = req.body.user._id
 	let update = await Users.findByIdAndUpdate({_id: userId}, {
-		firstName: req.body.user.firstName,
-		lastName: req.body.user.firstName,
-		email: req.body.user.email,
-		password: req.body.user.password,
-		permission: req.body.user.accessLevel,
-		userSupervisor: req.body.user.userSupervisor,
+ 			firstName: req.body.user.firstName,
+ 			lastName: req.body.user.lastName,
+ 			email: req.body.user.email,
+ 			userName: req.body.user.userName,
+ 			password: req.body.user.password,
+ 			permission: req.body.user.accessLevel,
+ 			userSupervisor: req.body.user.userSupervisor
 	})
-  res.json(update)
+	// console.log(req.body)
 	console.log(update)
+  res.json({user: {
+		firstName: update.firstName,
+		lastName: update.lastName,
+		email: update.email,
+		storedAccess: update.permission,
+		userName: update.userName,
+		password: update.password,
+		storedAccess: update.permission,
+		supervisor: update.userSupervisor,
+	}})
 })
 // *** end PATCH Users end ***
 
