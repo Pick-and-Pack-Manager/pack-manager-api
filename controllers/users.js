@@ -32,6 +32,7 @@ router.get('/supervisors', async (req, res) => {
   let users = await Users.find({permission: {
   						$gte: 'D'
 						}})
+						console.log(users)
   res.send(users)
 })
 // *** end GET Users end ***
@@ -46,16 +47,18 @@ router.get('/staff', async (req, res) => {
 
 // *** start PATCH Users start ***
 router.patch('/', async (req, res) => {
-	console.log(req.body.user._id)
-	let userId = req.body.user._id
+	console.log(req.body.user.id)
+	let userId = req.body.user.id
+	let userSupervisorCheck = req.body.user.userSupervisor == undefined ? userId : req.body.user.userSupervisor
 	let update = await Users.findByIdAndUpdate({_id: userId}, {
+			_id: userId,
  			firstName: req.body.user.firstName,
  			lastName: req.body.user.lastName,
  			email: req.body.user.email,
  			userName: req.body.user.userName,
  			password: req.body.user.password,
  			permission: req.body.user.accessLevel,
- 			userSupervisor: req.body.user.userSupervisor
+ 			userSupervisor: this.userSupervisorCheck
 	})
 	// console.log(req.body)
 	console.log(update)
