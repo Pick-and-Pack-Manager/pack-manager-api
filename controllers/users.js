@@ -1,6 +1,7 @@
 // Import Packages
 const express = require('express')
 const router = express.Router()
+const bodyParser = require('body-parser')
 
 
 const Users = require('../models/users.js')
@@ -19,20 +20,21 @@ router.post('/', async (req, res) => {
 // *** end POST Users end ***
 
 // *** start GET Users start ***
-router.get('/', async (req, res) => {
-	// console.log(req)
-  let users = await Users.find()
-  res.send(users)
+router.post('/getuser', async (req, res) => {
+	console.log('REQUESTED GET USER')
+	console.log(req.body)
+  let user = await Users.findById({_id: req.body.selectedUser._id})
+  res.json(user)
 })
 // *** end GET Users end ***
 
 // *** start GET Users start ***
 router.get('/supervisors', async (req, res) => {
+	// console.log('GetSuper')
 	// console.log(req.body)
   let users = await Users.find({permission: {
   						$gte: 'D'
 						}})
-						console.log(users)
   res.send(users)
 })
 // *** end GET Users end ***
@@ -69,7 +71,6 @@ router.patch('/', async (req, res) => {
 		storedAccess: update.permission,
 		userName: update.userName,
 		password: update.password,
-		storedAccess: update.permission,
 		supervisor: update.userSupervisor,
 	}})
 })
