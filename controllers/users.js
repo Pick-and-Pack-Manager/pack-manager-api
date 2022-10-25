@@ -20,17 +20,28 @@ router.post('/', async (req, res) => {
 // *** end POST Users end ***
 
 // *** start GET Users start ***
-router.post('/getuser', async (req, res) => {
+router.post('/finduser', async (req, res) => {
 	console.log('REQUESTED GET USER')
 	console.log(req.body)
-  let user = await Users.findById({_id: req.body._id})
-  res.json(user)
+	let findUserById = req.body.selectedUser._id = null ? req.body.selectedUser._id : req.body.selectedUser.id
+  let user = await Users.findById(findUserById)
+	console.log(user)
+	res.json({user: {
+		id: user._id,
+		firstName: user.firstName,
+		lastName: user.lastName,
+		email: user.email,
+		storedAccess: user.permission,
+		userName: user.userName,
+		password: user.password,
+		supervisor: user.userSupervisor,
+	}})
 })
 // *** end GET Users end ***
 
 // *** start GET Users start ***
 router.get('/supervisors', async (req, res) => {
-	// console.log('GetSuper')
+	console.log('GetSuper')
 	// console.log(req.body)
   let users = await Users.find({permission: {
   						$gte: 'D'
@@ -65,6 +76,7 @@ router.patch('/', async (req, res) => {
 	// console.log(req.body)
 	console.log(update)
   res.json({user: {
+		id: update._id,
 		firstName: update.firstName,
 		lastName: update.lastName,
 		email: update.email,
