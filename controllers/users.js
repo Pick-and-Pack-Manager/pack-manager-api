@@ -23,7 +23,11 @@ router.post('/', async (req, res) => {
 router.post('/finduser', async (req, res) => {
 	console.log('REQUESTED GET USER')
 	console.log(req.body)
-	let findUserById = req.body.selectedUser._id = null ? req.body.selectedUser._id : req.body.selectedUser.id
+	let findUserById = null
+	if (req.body.selectedUser._id == null) {
+		findUserById = req.body.selectedUser.id
+	} else findUserById = req.body.selectedUser._id
+	console.log(findUserById)
   let user = await Users.findById(findUserById)
 	console.log(user)
 	res.json({user: {
