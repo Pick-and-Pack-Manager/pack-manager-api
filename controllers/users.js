@@ -51,7 +51,7 @@ router.get('/staff', async (req, res) => {
 router.patch('/', async (req, res) => {
 	console.log('PATCHUSER')
 	console.log(req.body)
-	let userSupervisorCheck = req.body.user.userSupervisor == undefined ? userId : req.body.user.userSupervisor
+	let userSupervisorCheck = req.body.user.userSupervisor == undefined || req.body.user.userSupervisor == null? req.body.user.id : req.body.user.userSupervisor
 	let update = await Users.findByIdAndUpdate({_id: req.body.user.id}, {
 			_id: req.body.user.id,
  			firstName: req.body.user.firstName,
