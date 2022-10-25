@@ -30,16 +30,7 @@ router.post('/finduser', async (req, res) => {
 	console.log(findUserById)
   let user = await Users.findById(findUserById)
 	console.log(user)
-	res.json({user: {
-		id: user._id,
-		firstName: user.firstName,
-		lastName: user.lastName,
-		email: user.email,
-		storedAccess: user.permission,
-		userName: user.userName,
-		password: user.password,
-		supervisor: user.userSupervisor,
-	}})
+	res.json({user})
 })
 // *** end GET Users end ***
 
@@ -74,7 +65,7 @@ router.patch('/', async (req, res) => {
  			email: req.body.user.email,
  			userName: req.body.user.userName,
  			password: req.body.user.password,
- 			permission: req.body.user.accessLevel,
+ 			permission: req.body.user.storedAccess,
  			userSupervisor: this.userSupervisorCheck
 	})
 	// console.log(req.body)
