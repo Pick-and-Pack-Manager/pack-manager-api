@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 router.post('/getuser', async (req, res) => {
 	console.log('REQUESTED GET USER')
 	console.log(req.body)
-  let user = await Users.findById({_id: req.body.selectedUser._id})
+  let user = await Users.findById({_id: req.body._id})
   res.json(user)
 })
 // *** end GET Users end ***
@@ -49,11 +49,11 @@ router.get('/staff', async (req, res) => {
 
 // *** start PATCH Users start ***
 router.patch('/', async (req, res) => {
-	console.log(req.body.user.id)
-	let userId = req.body.user.id
+	console.log('PATCHUSER')
+	console.log(req.body)
 	let userSupervisorCheck = req.body.user.userSupervisor == undefined ? userId : req.body.user.userSupervisor
-	let update = await Users.findByIdAndUpdate({_id: userId}, {
-			_id: userId,
+	let update = await Users.findByIdAndUpdate({_id: req.body.user.id}, {
+			_id: req.body.user.id,
  			firstName: req.body.user.firstName,
  			lastName: req.body.user.lastName,
  			email: req.body.user.email,
