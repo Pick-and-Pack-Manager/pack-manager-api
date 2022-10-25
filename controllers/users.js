@@ -66,7 +66,7 @@ router.patch('/', async (req, res) => {
  			userName: req.body.user.userName,
  			password: req.body.user.password,
  			permission: req.body.user.storedAccess,
- 			userSupervisor: this.userSupervisorCheck
+ 			userSupervisor: req.body.user.userSupervisor
 	})
 	// console.log(req.body)
 	console.log(update)
