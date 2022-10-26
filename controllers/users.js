@@ -12,20 +12,41 @@ const Users = require('../models/users.js')
 // *** Users are a part of this app. Full control allowed ***
 // Need POST and GET. Can build PATCH and Delete later
 // *** start POST Users start ***
-router.post('/addnewuser', async (req, res) => {
-	console.log(req.body)
-  let newUser = await Users.create({
-		firstName: req.body.user.firstName,
-		lastName: req.body.user.lastName,
-		email: req.body.user.email,
-		userName: req.body.user.userName,
-		password: req.body.user.password,
-		permission: req.body.user.storedAccess,
-		userSupervisor: req.body.user.userSupervisor,
-		createdBy: req.body.user.createdBy
-	})
-	console.log('CREATE NEW USER')
-  res.json(newUser)
+router.post('/addnewuser', async (req, res, next) => {
+	try {
+		if (req.isAuthenticated()) {
+			if ((await Users.countDocuments({ email: req.body.user.email })) > 0) {
+				console.log('MATCHING USER FOUND')
+							console.log(req.user)
+				res.json({errorMessage: 'MATCHING USER FOUND'})
+			} else {
+				console.log(req.body)
+				let newUser = await Users.create({
+					firstName: req.body.user.firstName,
+					lastName: req.body.user.lastName,
+					email: req.body.user.email,
+					userName: req.body.user.userName,
+					password: req.body.user.password,
+					permission: req.body.user.storedAccess,
+					userSupervisor: req.body.user.userSupervisor,
+					createdBy: req.body.user.createdBy,
+				})
+				let returnData = {
+					newUser: newUser,
+					successMessage: 'New User Created'
+				}
+				console.log('CREATE NEW USER')
+				console.log(returnData)
+				res.json({returnData})
+			}
+		} else {
+			console.log('User not logged in')
+			res.json({errorMessage: 'LOGGED IN USER NOT AUTHENTICATED!!! Log out and try again'})
+			throw new Error('Not Logged In')
+		}
+	} catch (err) {
+		next(err)
+	}
 })
 // *** end POST Users end ***
 // *** start POST Users start ***
