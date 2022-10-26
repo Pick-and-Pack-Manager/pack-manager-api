@@ -10,12 +10,23 @@ const Orders = require('../models/orders.js')
 // Views
 // *** Orders are pulled from external source (SAP B1 in this case) so limited updating allowed  Only Issued, IssuedQty, IssuedDate, IssuedBalance, FreeText, PackageID, ManifaestID***
 // *** start GET orders start ***
-router.get('/', async (req, res) => {
-  let orders = await Orders.find({
-    // title: { $regex: req.query.search || '' }
-  })
-	console.log('GET Orders')
-  res.json(orders)
+router.get('/', async (req, res, next) => {
+	try {
+		if (true) {
+			let orders = await Orders.find({
+				// title: { $regex: req.query.search || '' }
+			})
+			console.log('GET Orders')
+			console.log(orders)
+			res.json(orders)
+		} else {
+			console.log('User not logged in')
+			res.json({errorMessage: 'LOGGED IN USER NOT AUTHENTICATED!!! Log out and try again'})
+			throw new Error('Not Logged In')
+		}
+
+
+	} catch (err) {next(err)}
 })
 // *** end GET orders end ***
 
