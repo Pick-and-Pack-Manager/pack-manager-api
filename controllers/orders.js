@@ -10,14 +10,24 @@ const Orders = require('../models/orders.js')
 // Views
 // *** Orders are pulled from external source (SAP B1 in this case) so limited updating allowed  Only Issued, IssuedQty, IssuedDate, IssuedBalance, FreeText, PackageID, ManifaestID***
 // *** start GET orders start ***
-router.get('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
 	try {
-		if (true) {
-			let orders = await Orders.find({
-				// title: { $regex: req.query.search || '' }
-			})
-			console.log('GET Orders')
-			console.log(orders)
+		if (req.isAuthenticated()) {
+			// DELETE NULL FROM body
+			if (req.body.kittingRoute == "all" || req.body.kittingRoute == null || req.body.kittingRoute == undefined) {
+				delete req.body.kittingRoute
+			}
+			// DELETE NULL FROM body
+			if (req.body.completingRoute == "all" || req.body.completingRoute == null || req.body.completingRoute == undefined) {
+				delete req.body.completingRoute
+			}
+			// DELETE NULL FROM body
+			if (req.body.despatchRoute == "all" || req.body.despatchRoute == null || req.body.despatchRoute == undefined) {
+				delete req.body.despatchRoute
+			}
+			let orders = await Orders.find(req.body)
+			console.log('POST Orders')
+			console.log(req.body)
 			res.json(orders)
 		} else {
 			console.log('User not logged in')
