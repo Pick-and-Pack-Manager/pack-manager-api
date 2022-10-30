@@ -18,7 +18,11 @@ let inventoryModel = mongoose.model('inventory', {
 		groupCode: {
 			type: Number,
 			required: true
-		}
+		},
+		qryGroup64: {
+			type: String,
+		},
+
 	},
 	inactive: {
 		type: String,
