@@ -52,6 +52,7 @@ router.patch('/', async (req, res, next) => {
 			res.json(updateOrder)
 		} else {
 			console.log('User not logged in')
+			console.log(res)
 			res.json({errorMessage: 'LOGGED IN USER NOT AUTHENTICATED!!! Log out and try again'})
 			throw new Error('Not Logged In')
 		}
