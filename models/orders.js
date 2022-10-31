@@ -63,42 +63,7 @@ let ordersModel = mongoose.model('orders', {
 		freeText: {
 			type: String,
 		},
-		shippingType: {
-			type: String
-		},
-		shippingProvider: {
-			type: String
-		},
-		shippingDestination: {
-			type: String
-		},
-		packageId: {
-			type: ObjectId,
-			ref: 'packages'
-		},
-		manifestId: {
-			type: ObjectId,
-			ref: 'manifests'
-		}
 	}],
-	customer: {
-		cardCode: {
-			// unique identifier for Customers
-			type: String,
-			required: true
-		},
-		cardName: {
-			// Name of Customer
-			type: String,
-			required: true
-		},
-		cardType: {
-			type: String,
-		},
-		cardGroup: {
-			type: Number,
-		},
-	},
 	orderComments: {
 		type: String
 	},
@@ -114,7 +79,20 @@ let ordersModel = mongoose.model('orders', {
 		// this is which area of the Business is Completing. COM1 = Domestic, COM2 = Commercial/Export, COM3 = USA,
 		type: String,
 		required: true
-	}
+	},
+	pickedByName: String,
+	pickedDate: Date,
+	pickedBy: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	checked: String,
+	checkedByName: String,
+	checkedDate: Date,
+	checkedBy: {
+		type: ObjectId,
+		ref: 'users'
+	},
 })
 
 module.exports = ordersModel
