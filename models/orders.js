@@ -19,6 +19,23 @@ let ordersModel = mongoose.model('orders', {
 	completingDate: {
 		type: Date,
 		required: true
+	},customer: {
+		cardCode: {
+			// unique identifier for Customers
+			type: String,
+			required: true
+		},
+		cardName: {
+			// Name of Customer
+			type: String,
+			required: true
+		},
+		cardType: {
+			type: String,
+		},
+		cardGroup: {
+			type: Number,
+		},
 	},
 	orderItems: [{
 		// ARRAY of all Items on the Sales Order. RDR1
