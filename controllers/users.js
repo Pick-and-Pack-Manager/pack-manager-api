@@ -86,7 +86,7 @@ router.get('/supervisors', async (req, res) => {
 // *** start GET Staff start ***
 router.get('/staff', async (req, res) => {
   let staffUsers = await Users.find({})
-	console.log(staffUsers)
+	console.log(req.body)
   res.send(staffUsers)
 })
 // *** end GET Staff end ***

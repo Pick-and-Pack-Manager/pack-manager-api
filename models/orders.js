@@ -16,10 +16,64 @@ let ordersModel = mongoose.model('orders', {
 		type: Date,
 		required: true
 	},
+	plannedKittingUser: {
+		type: String
+	},
+	plannedKittingId: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	kittingUserSelectedBy: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	kittingUserSelectedByName: {
+		type: String
+	},
+	kittingUserSeletedDate: {
+		type: Date
+	},
+
+	plannedCompletingUser: {
+		type: String
+	},
+	plannedCompletingId: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	completingUserSelectedBy: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	completingUserSelectedByName: {
+		type: String
+	},
+	completingUserSeletedDate: {
+		type: Date
+	},
 	completingDate: {
 		type: Date,
 		required: true
-	},customer: {
+	},
+
+	plannedDespatchUser: {
+		type: String
+	},
+	plannedDespatchId: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	despatchUserSelectedBy: {
+		type: ObjectId,
+		ref: 'users'
+	},
+	despatchUserSelectedByName: {
+		type: String
+	},
+	despatchUserSeletedDate: {
+		type: Date
+	},
+	customer: {
 		cardCode: {
 			// unique identifier for Customers
 			type: String,
