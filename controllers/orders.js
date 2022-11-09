@@ -1,6 +1,7 @@
 // Import Packages
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
 
 
 const Orders = require('../models/orders.js')
@@ -25,9 +26,30 @@ router.post('/', async (req, res, next) => {
 			if (req.body.despatchRoute == "all" || req.body.despatchRoute == null || req.body.despatchRoute == undefined) {
 				delete req.body.despatchRoute
 			}
+			if (req.body.kittingDate == "all" || req.body.kittingDate == null || req.body.kittingDate == undefined) {
+				delete req.body.kittingDate
+			} else {
+      req.body.kittingDate = {
+				$gte: moment(req.body.kittingDate).format('YYYY-MM-DD'),
+				$lt: moment(req.body.kittingDate).add(1, "days").format('YYYY-MM-DD')
+			}
+		}	if (req.body.completingDate == "all" || req.body.completingDate == null || req.body.completingDate == undefined) {
+						delete req.body.completingDate
+					} else {
+						req.body.completingDate = {
+							$gte: moment(req.body.completingDate).format('YYYY-MM-DD'),
+							$lt: moment(req.body.completingDate).add(1, "days").format('YYYY-MM-DD')
+						}
+		}	if (req.body.despatchDate == "all" || req.body.despatchDate == null || req.body.despatchDate == undefined) {
+						delete req.body.despatchDate
+					} else {
+						req.body.despatchDate = {
+							$gte: moment(req.body.despatchDate).format('YYYY-MM-DD'),
+							$lt: moment(req.body.despatchDate).add(1, "days").format('YYYY-MM-DD')
+						}
+				}
 			let orders = await Orders.find(req.body)
-			console.log('POST Orders')
-			console.log(req.body)
+
 			res.json(orders)
 		} else {
 			console.log('User not logged in')
