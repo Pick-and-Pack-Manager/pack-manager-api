@@ -14,6 +14,7 @@ const Orders = require('../models/orders.js')
 router.post('/', async (req, res, next) => {
 	try {
 		if (req.isAuthenticated()) {
+			console.log(req.body)
 			// DELETE NULL FROM body
 			if (req.body.kittingRoute == "all" || req.body.kittingRoute == null || req.body.kittingRoute == undefined) {
 				delete req.body.kittingRoute
