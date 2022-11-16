@@ -24,7 +24,7 @@ router.post('/', async (req, res, next) => {
 				delete req.body.completingRoute
 			}
 			// DELETE NULL FROM body
-			if (req.body.despatchRoute == "all" || req.body.despatchRoute == null || req.body.despatchRoute == undefined) {
+			if (req.body.despatchRoute == "all" || req.body.despatchRoute == null || req.body.despatchRoute == undefined || req.body.despatchRoute == 'DESP1') {
 				delete req.body.despatchRoute
 			}
 			if (req.body.kittingDate == "all" || req.body.kittingDate == null || req.body.kittingDate == undefined) {
@@ -50,8 +50,11 @@ router.post('/', async (req, res, next) => {
 						}
 				}
 			let orders = await Orders.find(req.body)
+			console.log(orders)
+			let sortedOrders = orders.sort((a, b) => new Date(a.docDueDate) - new Date(b.docDueDate))
+			console.log(orders)
 
-			res.json(orders)
+			res.json(sortedOrders)
 		} else {
 			console.log('User not logged in')
 			res.json({errorMessage: 'LOGGED IN USER NOT AUTHENTICATED!!! Log out and try again'})
