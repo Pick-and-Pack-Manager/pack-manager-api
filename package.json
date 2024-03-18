@@ -22,6 +22,7 @@
     "moment": "^2.29.4",
     "mongoose": "^5.9.10",
     "morgan": "~1.9.1",
+    "odbc": "^2.4.8",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "session": "^0.1.0"
