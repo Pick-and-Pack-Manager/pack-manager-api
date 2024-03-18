@@ -45,6 +45,7 @@ mongoose.connect(
     console.log('Connected to MongoDB')
   }
 )
+odbc.connect(process.env.ODBC_SAPB1, () => {console.log('Connected to SAP B1 ODBC')});
 
 // Security
 require('./express-sessions')(app)
@@ -59,5 +60,7 @@ app.use('/manifests', require('./controllers/manifests'))
 // for adding Data
 // app.use('/addinventory', require('./controllers/addinventory'))
 // app.use('/addorders', require('./controllers/addorders'))
+
+
 
 module.exports = app
