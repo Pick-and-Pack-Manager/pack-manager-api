@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
 			const inventoryData = await pool.query(query)
 			console.log('inventory query ran!!!')
 			console.log(inventoryData)
+			console.log(inventoryData.length)
 			console.log('Inventory Query Complete!!!')
 			  res.json(inventoryData)
 			});
