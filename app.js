@@ -45,7 +45,11 @@ mongoose.connect(
     console.log('Connected to MongoDB')
   }
 )
-odbc.connect(process.env.ODBC_SAPB1, () => {console.log('Connected to SAP B1 ODBC')});
+// odbc.connect(process.env.ODBC_SAPB1, async () => {console.log('Connecting to SAP B1 ODBC')
+// const pool = await odbc.pool(process.env.ODBC_SAPB1);
+// console.log('INTERTANC POOL CREATED!' + pool)
+// });
+
 
 // Security
 require('./express-sessions')(app)
