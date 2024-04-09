@@ -2,11 +2,10 @@
 const express = require('express')
 const router = express.Router()
 const moment = require('moment')
+const odbc = require('odbc');
 
-
-const Orders = require('../models/orders.js')
-
-// const app = express()
+// Database configuration
+const sapB1ODBC = process.env.ODBC_SAPB1
 
 // Views
 // *** Orders are pulled from external source (SAP B1 in this case) so limited updating allowed  Only Issued, IssuedQty, IssuedDate, IssuedBalance, FreeText, PackageID, ManifaestID***
@@ -65,26 +64,6 @@ router.post('/', async (req, res, next) => {
 	} catch (err) {next(err)}
 })
 // *** end GET orders end ***
-
-// *** start PATCH orders start ***
-router.patch('/', async (req, res, next) => {
-	try {
-		if (req.isAuthenticated()) {
-			console.log('PATCH Orders')
-			let updateOrder = await Orders.findByIdAndUpdate({_id: req.body.order._id}, {
-					orderItems: req.body.order.orderItems,
-			})
-			console.log(updateOrder)
-			res.json(updateOrder)
-		} else {
-			console.log('User not logged in')
-			console.log(res)
-			res.json({errorMessage: 'LOGGED IN USER NOT AUTHENTICATED!!! Log out and try again'})
-			throw new Error('Not Logged In')
-		}
-	} catch (err) {next(err)}
-})
-// *** end PATCH orders end ***
 
 // Export module
 module.exports = router
