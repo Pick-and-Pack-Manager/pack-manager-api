@@ -61,6 +61,7 @@ app.use('/users', require('./controllers/users'))
 app.use('/inventory', require('./controllers/inventory'))
 app.use('/packages', require('./controllers/packages'))
 app.use('/manifests', require('./controllers/manifests'))
+app.use('/orderQuery', require('./controllers/orderQuery'))
 // for adding Data
 // app.use('/addinventory', require('./controllers/addinventory'))
 // app.use('/addorders', require('./controllers/addorders'))
