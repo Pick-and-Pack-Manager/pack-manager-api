@@ -4,6 +4,8 @@ const router = express.Router()
 const moment = require('moment')
 const odbc = require('odbc');
 
+const Orders = require('../models/orders.js')
+
 // Database configuration
 const sapB1ODBC = process.env.ODBC_SAPB1
 
