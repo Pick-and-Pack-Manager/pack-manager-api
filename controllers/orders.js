@@ -67,5 +67,26 @@ router.post('/', async (req, res, next) => {
 })
 // *** end GET orders end ***
 
+// *** start PATCH orders start ***
+router.patch('/', async (req, res, next) => {
+	try {
+		if (req.isAuthenticated()) {
+			console.log('PATCH Orders')
+			let updateOrder = await Orders.findByIdAndUpdate({_id: req.body.order._id}, {
+					orderItems: req.body.order.orderItems,
+			})
+			console.log(updateOrder)
+			res.json(updateOrder)
+		} else {
+			console.log('User not logged in')
+			console.log(res)
+			res.json({errorMessage: 'LOGGED IN USER NOT AUTHENTICATED!!! Log out and try again'})
+			throw new Error('Not Logged In')
+		}
+	} catch (err) {next(err)}
+})
+// *** end PATCH orders end ***
+
+
 // Export module
 module.exports = router
