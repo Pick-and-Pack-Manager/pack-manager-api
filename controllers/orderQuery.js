@@ -15,55 +15,56 @@ router.get('/', async (req, res) => {
 
         // First, get the ORDR results with updated column references
         const ordrQuery = `SELECT
-            ORDR.DocNum AS "orderNumber",
-            ORDR.DocEntry AS "docEntry",
-            ORDR.DocDueDate AS "despatchDate",
-            ORDR.U_KITROUTE AS "kittingRoute",
-            ORDR.U_Kitting AS "kittingDate",
-            ORDR.U_COMPROUTE AS "completingRoute",
-            ORDR.U_Completion AS "completingDate",
-            ORDR.CardCode AS "dealerCode",
-            ORDR.CardName AS "dealerName",
-            ORDR.Address2 AS "dealerAddress",
-            ORDR.U_CustName AS "customer",
-            ORDR.U_CustAdd AS "customerAddress",
-            ORDR.Comments AS "orderComments",
-            ORDR.U_ASSMSTATUS AS "assemblyStatus",
-            ORDR.U_COMPORDER AS "orderPriority",
-            ORDR.DocStatus AS "orderStatus",
-            ORDR.U_SalesCateg AS "salesCategory",
-            ORDR.U_U_ActDespDate AS "actualDespatchDate"
-        FROM SBO_InterTanc.dbo.ORDR ORDR
-        WHERE ORDR.U_COMPROUTE = 'COM1' AND ORDR.DocStatus = 'O' AND ORDR.U_Completion = '2024/04/09'
-        ORDER BY ORDR.U_COMPORDER`;
+					    ordr.DocNum,
+					    ordr.DocEntry,
+					    ordr.DocDueDate,
+					    ordr.U_KITROUTE,
+					    ordr.U_Kitting,
+					    ordr.U_COMPROUTE,
+					    ordr.U_Completion,
+					    ordr.CardCode,
+					    ordr.CardName,
+					    ordr.Address2,
+					    ordr.U_CustName,
+					    ordr.U_CustAdd,
+					    ordr.Comments,
+					    ordr.U_ASSMSTATUS,
+					    ordr.U_COMPORDER,
+					    ordr.DocStatus,
+					    ordr.U_SalesCateg,
+					    ordr.U_U_ActDespDate
+					FROM sbo_intertanc.dbo.ordr ordr
+					WHERE ordr.U_COMPROUTE = 'COM1' AND ordr.DocStatus = 'O' AND ordr.U_Completion = '2024/04/11'
+					ORDER BY ordr.U_COMPORDER`;
 
         const ordrResults = await pool.query(ordrQuery);
 
         // Then, for each ORDR result, find matching RDR1 entries with updated column references
         for (let order of ordrResults) {
             const rdr1Query = `SELECT
-                RDR1.DocEntry AS "lineDocEntry",
-                RDR1.LineStatus AS "lineStatus",
-                RDR1.VisOrder AS "lineNumber",
-                RDR1.ItemCode AS "itemCode",
-                RDR1.Dscription AS "itemDescription",
-                RDR1.U_Released AS "lineReleaseStatus",
-                RDR1.U_ReleasedDate AS "lineReleaseDate",
-                RDR1.U_KitCompArea AS "pickingRoute",
-                RDR1.ShipDate AS "shipDate",
-                RDR1.Quantity AS "requiredQty",
-                RDR1.U_IssueFromWhse AS "stockLocation",
-                RDR1.U_IssuedBal AS "issuedBalance",
-                RDR1.U_Issued AS "issuedStatus",
-                RDR1.U_IssuedDate AS "issuedDate",
-                RDR1.WhsCode AS "deliveryWhse",
-                OITM.InvntItem AS "inventoryItem"
-            FROM SBO_InterTanc.dbo.RDR1 RDR1
-            INNER JOIN SBO_InterTanc.dbo.OITM OITM ON RDR1.ItemCode = OITM.ItemCode
-            WHERE RDR1.DocEntry = ?
-            ORDER BY RDR1.BaseDocNum, RDR1.VisOrder`;
+							    rdr1.DocEntry,
+									rdr1.LineNum,
+							    rdr1.LineStatus,
+							    rdr1.VisOrder,
+							    rdr1.ItemCode,
+							    rdr1.Dscription,
+							    rdr1.U_Released,
+							    rdr1.U_ReleasedDate,
+							    rdr1.U_KitCompArea,
+							    rdr1.ShipDate,
+							    rdr1.Quantity,
+							    rdr1.U_IssueFromWhse,
+							    rdr1.U_IssuedBal,
+							    rdr1.U_Issued,
+							    rdr1.U_IssuedDate,
+							    rdr1.WhsCode,
+							    oitm.InvntItem
+							FROM sbo_intertanc.dbo.rdr1 rdr1
+							INNER JOIN sbo_intertanc.dbo.oitm oitm ON rdr1.ItemCode = oitm.ItemCode
+							WHERE rdr1.DocEntry = ?
+							ORDER BY rdr1.BaseDocNum, rdr1.VisOrder`;
 
-            const rdr1Results = await pool.query(rdr1Query, [order.docEntry]);
+            const rdr1Results = await pool.query(rdr1Query, [order.DocEntry]);
             order.orderLines = rdr1Results;
         }
 
